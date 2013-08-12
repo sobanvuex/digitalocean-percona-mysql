@@ -93,4 +93,8 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
 mysql> 
 ```
-### Success - You have installed Percona MySQL Server
+## Step Four - Simple configuration
+
+	TODO
+
+## Success  — You have installed Percona MySQL Server
