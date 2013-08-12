@@ -12,7 +12,7 @@ Percona Server is an enhanced, drop-in MySQL replacement. With Percona Server:
 ## Set Up
 The steps in this tutorial require the user to have root privileges on your VPS. You can see how to set that up in the [Initial Server Setup](https://www.digitalocean.com/community/articles/initial-server-setup-with-ubuntu-12-04) in steps 3 and 4.
 
-## I - Add Percona's repositories and key
+## Step Oen — Add Percona's repositories and key
 
   - Open terminal and execute the following command to add the repository
 
@@ -26,7 +26,7 @@ The steps in this tutorial require the user to have root privileges on your VPS.
 
 ```sudo apt-get update```
 
-## II - Install server and client
+## Step Two — Install server and client
 
   - Open terminal and execute the following command to install Percona MySQL (stable)
 
@@ -69,7 +69,7 @@ The steps in this tutorial require the user to have root privileges on your VPS.
 [info] Checking for corrupt, not cleanly closed and upgrade needing tables..
 ```
 
-## III - Test connection
+## Step Three — Test connection
 
   - Open terminal and enter. When prompted for password use the one you set up earlier
 
