@@ -179,6 +179,70 @@ mysql>
 
 ## Step Five — Simple configuration
 
-  TODO
+Percona's MySQL comes with a **LIMITED** `my.cnf`. It is advised to modify it. When creating or altering the contents of `my.cnf` your server may not start. There could be many reasons for that. One of the more common is change of InnoDB log files size - To fix it stop MySQL, remove the log files and restart MySQL. The InnoDB logfiles will be recreated.
+
+  - First stop MySQL `sudo /etc/init.d/mysql stop` or `sudo service mysql stop`
+  - Remove old InnoDB's logs `sudo rm /var/lib/mysql/ib_logfile*`
+  - Open `/etc/my.cnf` with your editor of choice and paste the following configuration. It is designed around the 512MB ram Droplets
+
+```
+[mysql]
+
+# CLIENT #
+port                           = 3306
+
+[mysqld]
+
+# GENERAL #
+user                           = mysql
+default_storage_engine         = InnoDB
+pid_file                       = /var/lib/mysql/mysql.pid
+
+# MyISAM #
+key_buffer_size                = 32M
+myisam_recover                 = FORCE,BACKUP
+
+# SAFETY #
+max_allowed_packet             = 16M
+max_connect_errors             = 1000000
+sql_mode                       = STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_AUTO_VALUE_ON_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,ONLY_FULL_GROUP_BY
+sysdate_is_now                 = 1
+innodb                         = FORCE
+
+# DATA STORAGE #
+datadir                        = /var/lib/mysql/
+
+# BINARY LOGGING #
+log_bin                        = /var/lib/mysql/mysql-bin
+expire_logs_days               = 14
+sync_binlog                    = 1
+
+# CACHES AND LIMITS #
+tmp_table_size                 = 32M
+max_heap_table_size            = 32M
+query_cache_type               = 0
+query_cache_size               = 0
+max_connections                = 500
+thread_cache_size              = 50
+open_files_limit               = 65535
+table_definition_cache         = 4096
+table_open_cache               = 4096
+
+# INNODB #
+innodb_flush_method            = O_DIRECT
+innodb_log_files_in_group      = 2
+innodb_log_file_size           = 32M
+innodb_flush_log_at_trx_commit = 1
+innodb_file_per_table          = 1
+innodb_buffer_pool_size        = 256M
+
+# LOGGING #
+log_error                      = /var/lib/mysql/mysql-error.log
+log_queries_not_using_indexes  = 1
+slow_query_log                 = 1
+slow_query_log_file            = /var/lib/mysql/mysql-slow.log
+```
+
+  - Restart MySQL `sudo /etc/init.d/mysql start` or `sudo service mysql start`
 
 ## Success  — You have installed Percona MySQL Server
