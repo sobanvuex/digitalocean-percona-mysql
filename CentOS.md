@@ -10,6 +10,7 @@ Percona Server is an enhanced, drop-in MySQL replacement. With Percona Server:
   - Troubleshooting does not require guesswork
 
 ## Set Up
+
 The steps in this tutorial require the user to have root privileges on your VPS. You can see how to set that up in the [Initial Server Setup](https://www.digitalocean.com/community/articles/initial-server-setup-with-centos-6) in steps 3 and 4.
 
 ## Step Oen — Add Percona's repositories and key
@@ -32,6 +33,7 @@ percona-xtrabackup-test.x86_64           2.1.4-656.rhel6               percona
 qpress.x86_64                            11-1.el6                      percona  
 qpress-debuginfo.x86_64                  11-1.el6                      percona
 ```
+
 ## Step Two — Install server and client
 
   - Open terminal and execute the following command to install Percona MySQL (stable)
@@ -111,9 +113,9 @@ Complete!
 
 ## Step Three — Initial setup
 
-  - During installation you are not prompted to enter root password - leaving your server vulnerable. Instead percona has provided a script to complete the installation
-  - First start the server `/etc/init.d/mysql start`
-  - Run the secure installation script `/usr/bin/mysql_secure_installation`. You will be aksed a series of questions -
+  - During installation you are not prompted to enter root password - leaving your server vulnerable. Instead Percona has provided a script to complete the installation
+  - First start the server `sudo /etc/init.d/mysql start`
+  - Run the secure installation script `sudo /usr/bin/mysql_secure_installation`. You will be aksed a series of questions -
   - The **current** root password (blank/none) 
 
 ```Enter current password for root (enter for none):```
@@ -126,7 +128,7 @@ New password:
 Re-enter new password:
 ```
 
-  - Remove MySQL's announymous users
+  - Remove MySQL's anonymous users
 
 ```
 Remove anonymous users? [Y/n] y
@@ -177,6 +179,6 @@ mysql>
 
 ## Step Five - Simple configuration
 
-	TODO
+  TODO
 
 ## Success  — You have installed Percona MySQL Server
