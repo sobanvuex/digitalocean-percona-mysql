@@ -177,7 +177,7 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 mysql>
 ```
 
-## Step Five - Simple configuration
+## Step Five — Simple configuration
 
   TODO
 
