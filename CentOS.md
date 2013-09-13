@@ -1,4 +1,4 @@
-### About Percona MySQL
+## About Percona MySQL
 
 Percona Server is an enhanced, drop-in MySQL replacement. With Percona Server:
   - Queries will run faster and more consistently
@@ -17,13 +17,13 @@ The steps in this tutorial require the user to have root privileges on your VPS.
 
   - Open terminal and execute the following command to add the repository
 
-```sudo rpm -Uhv http://www.percona.com/downloads/percona-release/percona-release-0.0-1.x86_64.rpm``` - This command is for 64-bit operating system. To install 32-bit version - replace `x86_64` with `i386 `.
+`sudo rpm -Uhv http://www.percona.com/downloads/percona-release/percona-release-0.0-1.x86_64.rpm` - This command is for 64-bit operating system. To install 32-bit version - replace `x86_64` with `i386 `.
 
   - Test the repository
 
-```yum list | grep percona``` - You should see an output similar to
+`yum list | grep percona` - You should see an output similar to
 
-```
+~~~~
 Percona-SQL-50-debuginfo.x86_64          5.0.92-b23.89.rhel6           percona  
 Percona-SQL-client-50.x86_64             5.0.92-b23.89.rhel6           percona  
 Percona-SQL-devel-50.x86_64              5.0.92-b23.89.rhel6           percona  
@@ -32,17 +32,17 @@ percona-xtrabackup-debuginfo.x86_64      2.1.4-656.rhel6               percona
 percona-xtrabackup-test.x86_64           2.1.4-656.rhel6               percona  
 qpress.x86_64                            11-1.el6                      percona  
 qpress-debuginfo.x86_64                  11-1.el6                      percona
-```
+~~~~
 
 ## Step Two — Install server and client
 
   - Open terminal and execute the following command to install Percona MySQL (stable)
 
-```sudo yum install Percona-Server-server-55 Percona-Server-client-55``` - Installing the client is optional if this droplet is going to be a dedicated MySQL server.
+`sudo yum install Percona-Server-server-55 Percona-Server-client-55` - Installing the client is optional if this droplet is going to be a dedicated MySQL server.
 
   - During the installation you may be prompted to accept Percona's repository signing key
 
-```
+~~~~
 warning: rpmts_HdrFromFdno: Header V4 DSA/SHA1 Signature, key ID cd2efd2a: NOKEY
 Retrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-percona
 Importing GPG key 0xCD2EFD2A:
@@ -50,11 +50,11 @@ Importing GPG key 0xCD2EFD2A:
  Package: percona-release-0.0-1.x86_64 (installed)
  From   : /etc/pki/rpm-gpg/RPM-GPG-KEY-percona
 Is this ok [y/N]: y
-```
+~~~~
 
   - Once complete you should see similar to
 
-```
+~~~~
   Installing : Percona-Server-shared-55-5.5.32-rel31.0.549.rhel6.x86_64                                                       1/12 
   Installing : 1:perl-Pod-Escapes-1.04-131.el6_4.x86_64                                                                       2/12 
   Installing : 4:perl-libs-5.10.1-131.el6_4.x86_64                                                                            3/12 
@@ -109,7 +109,7 @@ Replaced:
   mysql-libs.x86_64 0:5.1.69-1.el6_4                                                                                               
 
 Complete!
-```
+~~~~
 
 ## Step Three — Initial setup
 
@@ -118,49 +118,49 @@ Complete!
   - Run the secure installation script `sudo /usr/bin/mysql_secure_installation`. You will be aksed a series of questions -
   - The **current** root password (blank/none) 
 
-```Enter current password for root (enter for none):```
+`Enter current password for root (enter for none):`
 
   - Set **new** root password
 
-```
+~~~~
 Set root password? [Y/n] y
 New password: 
 Re-enter new password:
-```
+~~~~
 
   - Remove MySQL's anonymous users
 
-```
+~~~~
 Remove anonymous users? [Y/n] y
-```
+~~~~
 
   - Disallow remote (other than localhost) root login
 
-```
+~~~~
 Disallow root login remotely? [Y/n] y
-```
+~~~~
 
   - Remote test database
 
-```
+~~~~
 Remove test database and access to it? [Y/n] y
-```
+~~~~
 
   - Reload privileges
 
-```
+~~~~
 Reload privilege tables now? [Y/n] y
-```
+~~~~
 
 ## Step Four — Test connection
 
   - Open terminal and enter. When prompted for password use the one you set up earlier
 
-```mysql -u root -p```
+`mysql -u root -p`
 
   - The output on the screen should be similar to
 
-```
+~~~~
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 11
 Server version: 5.5.32-31.0 Percona Server (GPL), Release rel31.0, Revision 549
@@ -175,7 +175,7 @@ owners.
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
 mysql>
-```
+~~~~
 
 ## Step Five — Simple configuration
 
@@ -183,9 +183,9 @@ Percona's MySQL comes with a **LIMITED** `my.cnf`. It is advised to modify it. W
 
   - First stop MySQL `sudo /etc/init.d/mysql stop` or `sudo service mysql stop`
   - Remove old InnoDB's logs `sudo rm /var/lib/mysql/ib_logfile*`
-  - Open `/etc/my.cnf` with your editor of choice and paste the following configuration. It is designed around the 512MB ram Droplets
+  - Open `/etc/my.cnf` with your editor of choice and paste the following configuration. The following is designed around the 512MB ram Droplets
 
-```
+`
 [mysql]
 
 # CLIENT #
@@ -241,7 +241,7 @@ log_error                      = /var/lib/mysql/mysql-error.log
 log_queries_not_using_indexes  = 1
 slow_query_log                 = 1
 slow_query_log_file            = /var/lib/mysql/mysql-slow.log
-```
+`
 
   - Restart MySQL `sudo /etc/init.d/mysql start` or `sudo service mysql start`
 
