@@ -185,7 +185,7 @@ Percona's MySQL comes with a **LIMITED** `my.cnf`. It is advised to modify it. W
   - Remove old InnoDB's logs `sudo rm /var/lib/mysql/ib_logfile*`
   - Open `/etc/my.cnf` with your editor of choice and paste the following configuration. The following is designed around the 512MB ram Droplets
 
-`
+~~~~
 [mysql]
 
 # CLIENT #
@@ -241,7 +241,7 @@ log_error                      = /var/lib/mysql/mysql-error.log
 log_queries_not_using_indexes  = 1
 slow_query_log                 = 1
 slow_query_log_file            = /var/lib/mysql/mysql-slow.log
-`
+~~~~
 
   - Restart MySQL `sudo /etc/init.d/mysql start` or `sudo service mysql start`
 
