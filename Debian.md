@@ -1,4 +1,4 @@
-### About Percona MySQL
+## About Percona MySQL
 
 Percona Server is an enhanced, drop-in MySQL replacement. With Percona Server:
   - Queries will run faster and more consistently
@@ -17,30 +17,30 @@ The steps in this tutorial require the user to have root privileges on your VPS.
 
   - Open terminal and execute the following command to add the repository
 
-```sudo echo "deb http://repo.percona.com/apt precise main" > /etc/apt/sources.list.d/percona.list``` - This command is for Ubuntu 12.04 (precise). To use another distributon - see supported distributions and their named versions [here](http://www.percona.com/doc/percona-server/5.5/installation/apt_repo.html).
+`sudo echo "deb http://repo.percona.com/apt precise main" > /etc/apt/sources.list.d/percona.list` - This command is for Ubuntu 12.04 (precise). To use another distributon - see supported distributions and their named versions [here](http://www.percona.com/doc/percona-server/5.5/installation/apt_repo.html).
 
   - Add Percona's signing key
 
-```sudo apt-key adv --keyserver keys.gnupg.net --recv-keys 1C4CBDCDCD2EFD2A```
+`sudo apt-key adv --keyserver keys.gnupg.net --recv-keys 1C4CBDCDCD2EFD2A`
 
   - Update packages
 
-```sudo apt-get update```
+`sudo apt-get update`
 
 ## Step Two — Install server and client
 
   - Open terminal and execute the following command to install Percona MySQL (stable)
 
-```sudo apt-get install percona-server-server-5.5 percona-server-client-5.5``` - Installing the client is optional if this droplet is going to be a dedicated MySQL server.
+`sudo apt-get install percona-server-server-5.5 percona-server-client-5.5` - Installing the client is optional if this droplet is going to be a dedicated MySQL server.
 
   - You can also install percona using its virtual package. The virtual package has same update properties as stable. But once testing (currently 5.6 RC) becomes stable the virtual package will point to it, leading to possible conflicts and issues when upgrading! To install virtual package -
 
-```sudo apt-get install percona-server-server percona-server-client```
+`sudo apt-get install percona-server-server percona-server-client`
 
   - During the installation you will be prompted to set a password for MySQL's root user.
   - Once complete you should see similar to
 
-```
+~~~~
 [ ok ] Stopping MySQL (Percona Server): mysqld.
 130812 19:00:25 [Note] Plugin 'FEDERATED' is disabled.
 130812 19:00:25 InnoDB: The InnoDB memory heap is disabled
@@ -68,17 +68,17 @@ The steps in this tutorial require the user to have root privileges on your VPS.
 
 [ ok ] Starting MySQL (Percona Server) database server: mysqld ..
 [info] Checking for corrupt, not cleanly closed and upgrade needing tables..
-```
+~~~~
 
 ## Step Three — Test connection
 
   - Open terminal and enter. When prompted for password use the one you set up earlier
 
-```mysql -u root -p```
+`mysql -u root -p`
 
   - The output on the screen should be similar to
 
-```
+~~~~
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 43
 Server version: 5.5.32-31.0 Percona Server (GPL), Release 31.0
@@ -93,7 +93,7 @@ owners.
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
 mysql>
-```
+~~~~
 
 ## Step Four — Simple configuration
 
@@ -103,7 +103,7 @@ Percona's MySQL **DOES NOT** come with `my.cnf`. So you need to create it. When 
   - Remove old InnoDB's logs `sudo rm /var/lib/mysql/ib_logfile*`
   - Open `/etc/mysql/my.cnf` with your editor of choice and paste the following configuration. It is designed around the 512MB ram Droplets
 
-```
+~~~~
 [mysql]
 
 # CLIENT #
@@ -159,7 +159,7 @@ log_error                      = /var/lib/mysql/mysql-error.log
 log_queries_not_using_indexes  = 1
 slow_query_log                 = 1
 slow_query_log_file            = /var/lib/mysql/mysql-slow.log
-```
+~~~~
 
   - Restart MySQL `sudo /etc/init.d/mysql start` or `sudo service mysql start`
 
