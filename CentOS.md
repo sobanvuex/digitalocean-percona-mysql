@@ -13,7 +13,7 @@ Percona Server is an enhanced, drop-in MySQL replacement. With Percona Server:
 
 The steps in this tutorial require the user to have root privileges on your VPS. You can see how to set that up in the [Initial Server Setup](https://www.digitalocean.com/community/articles/initial-server-setup-with-centos-6) in steps 3 and 4.
 
-## Step Oen — Add Percona's repositories and key
+## Step One — Add Percona's repositories and key
 
   - Open terminal and execute the following command to add the repository
 
@@ -38,7 +38,7 @@ qpress-debuginfo.x86_64                  11-1.el6                      percona
 
   - Open terminal and execute the following command to install Percona MySQL (stable)
 
-`sudo yum install Percona-Server-server-55 Percona-Server-client-55` - Installing the client is optional if this droplet is going to be a dedicated MySQL server.
+`sudo yum install Percona-Server-server-56 Percona-Server-client-56` - Installing the client is optional if this droplet is going to be a dedicated MySQL server.
 
   - During the installation you may be prompted to accept Percona's repository signing key
 
