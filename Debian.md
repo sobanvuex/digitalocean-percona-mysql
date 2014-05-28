@@ -31,9 +31,9 @@ The steps in this tutorial require the user to have root privileges on your VPS.
 
   - Open terminal and execute the following command to install Percona MySQL (stable)
 
-`sudo apt-get install percona-server-server-5.5 percona-server-client-5.5` - Installing the client is optional if this droplet is going to be a dedicated MySQL server.
+`sudo apt-get install percona-server-server-5.6 percona-server-client-5.6` - Installing the client is optional if this droplet is going to be a dedicated MySQL server.
 
-  - You can also install percona using its virtual package. The virtual package has same update properties as stable. But once testing (currently 5.6 RC) becomes stable the virtual package will point to it, leading to possible conflicts and issues when upgrading! To install virtual package -
+  - You can also install percona using its virtual package. The virtual package has same update properties as stable. But once new stable is released the virtual package will point to it, leading to possible conflicts and issues when upgrading! To install virtual package -
 
 `sudo apt-get install percona-server-server percona-server-client`
 
